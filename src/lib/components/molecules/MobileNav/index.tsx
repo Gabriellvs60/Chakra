@@ -1,23 +1,20 @@
 import type { FlexProps } from "@chakra-ui/react";
 import {
   IconButton,
-  Box,
   Flex,
   HStack,
   useColorModeValue,
   Text,
 } from "@chakra-ui/react";
-import type { IconType } from "react-icons";
-import { FiMenu } from "react-icons/fi";
+import { FiMenu, FiBell } from "react-icons/fi";
 
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "lib/layout/ThemeToggle";
 
 interface MobileProps extends FlexProps {
-  onOpen?: () => void;
-  icon: IconType;
+  onOpen: () => void;
 }
 
-const Header = ({ onOpen, ...rest }: MobileProps) => {
+const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}
@@ -48,14 +45,18 @@ const Header = ({ onOpen, ...rest }: MobileProps) => {
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
+        <IconButton
+          size="lg"
+          variant="ghost"
+          aria-label="open menu"
+          icon={<FiBell />}
+        />
         <Flex alignItems="center">
-          <Box ml={1}>
-            <ThemeToggle />
-          </Box>
+          <ThemeToggle />
         </Flex>
       </HStack>
     </Flex>
   );
 };
 
-export default Header;
+export default MobileNav;
