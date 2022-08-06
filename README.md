@@ -1,4 +1,4 @@
-# nextarter-chakra
+# Traderbook Web, a platform to register B3 stocks dividends
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/import/git?s=https://github.com/sozonome/nextarter-chakra) [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/sozonome/nextarter-chakra)
 
