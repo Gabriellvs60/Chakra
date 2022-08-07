@@ -1,0 +1,14 @@
+mutation login($data: LoginInput!) {
+	login(data: {
+		email: "lisa@simpson.com",
+		password: "secret42"
+	}){
+		accessToken
+		refreshToken
+		user{
+			email
+			id
+			firstname
+		}
+	}
+}
