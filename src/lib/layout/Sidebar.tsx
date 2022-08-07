@@ -6,6 +6,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import type { BoxProps } from "@chakra-ui/react";
+import { useIntl } from "react-intl";
 
 import NavItem from "lib/components/molecules/NavItem";
 import { LinkItems } from "lib/config/sidebar/links";
@@ -15,6 +16,8 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+  const { formatMessage } = useIntl();
+
   return (
     <Box
       transition="3s ease"
@@ -31,13 +34,13 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           fontWeight="bold"
           textTransform="uppercase"
         >
-          TradeBook
+          {formatMessage({ id: "label.projectName" })}
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
         <NavItem key={link.name} icon={link.icon}>
-          {link.name}
+          {formatMessage({ id: link.name })}
         </NavItem>
       ))}
     </Box>

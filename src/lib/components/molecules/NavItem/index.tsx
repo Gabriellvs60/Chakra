@@ -26,7 +26,7 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: useColorModeValue("white", "gray.800"),
+          bg: useColorModeValue("white", "gray.900"),
           boxShadow: "sm",
           rounded: "md",
           color: itemColor,
