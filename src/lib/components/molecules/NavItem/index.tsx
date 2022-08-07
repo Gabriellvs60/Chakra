@@ -1,5 +1,5 @@
 import type { FlexProps } from "@chakra-ui/react";
-import { Flex, Icon, Link } from "@chakra-ui/react";
+import { Flex, Icon, Link, useColorModeValue } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 import type { IconType } from "react-icons";
 
@@ -9,6 +9,8 @@ interface NavItemProps extends FlexProps {
 }
 
 const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+  const itemColor = useColorModeValue("gray.800", "white");
+
   return (
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Link
@@ -24,8 +26,10 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: "cyan.400",
-          color: "white",
+          bg: useColorModeValue("white", "gray.900"),
+          boxShadow: "sm",
+          rounded: "md",
+          color: itemColor,
         }}
         {...rest}
       >
@@ -34,7 +38,7 @@ const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
             mr="4"
             fontSize="16"
             _groupHover={{
-              color: "white",
+              color: itemColor,
             }}
             as={icon}
           />
