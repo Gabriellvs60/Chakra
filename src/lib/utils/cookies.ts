@@ -10,7 +10,7 @@ export function getCookie(ctx: never | null, key: string) {
 }
 
 export function setCookie(
-  ctx: Pick<NextPageContext, "res"> | { res: unknown },
+  ctx: Pick<NextPageContext, "res"> | { res: unknown } | null,
   key: string,
   value: string,
   cookieOptions: { maxAge: number; path: string }

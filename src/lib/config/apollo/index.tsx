@@ -1,38 +1,28 @@
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { ApolloClient, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import type { ApolloProviderProps } from "@apollo/client/react/context/ApolloProvider";
-// import createUploadLink from "apollo-upload-client/public/createUploadLink.js";
 
-import { getCookie } from "lib/components/utils/cookies";
+import { config } from "../env";
+import { getCookie } from "lib/utils/cookies";
 
-const setAuthorizationLink = setContext(() => {
+const httpLink = createHttpLink({
+  uri: config.API_URL,
+});
+
+const authLink = setContext((_, { headers }) => {
   const token = getCookie(null, "authToken");
+
   if (token) {
     return {
       headers: {
-        authorization: `Bearer ${getCookie(null, "authToken")}`,
+        ...headers,
+        authorization: token ? `Bearer ${token}` : "",
       },
     };
   }
   return {};
 });
 
-// const uploadLink = createUploadLink({
-//   uri: process.env.NEXT_PUBLIC_API_URL,
-//   fetch,
-// });
-
 export const apolloClient = new ApolloClient({
-  cache: new InMemoryCache({
-    addTypename: false,
-  }),
-  ssrMode: !process.browser,
-  // link: setAuthorizationLink.concat(uploadLink),
-  link: setAuthorizationLink,
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
-
-export const CustomApolloProvider = ({
-  children,
-}: ApolloProviderProps<unknown>) => {
-  return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
-};

@@ -6,9 +6,9 @@ import {
   useColorModeValue,
   Text,
 } from "@chakra-ui/react";
-import { FiMenu, FiBell } from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
 
-import ThemeToggle from "lib/layout/ThemeToggle";
+import ThemeToggle from "lib/components/layout/ThemeToggle";
 
 interface MobileProps extends FlexProps {
   onOpen: () => void;
@@ -43,12 +43,6 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       </Text>
 
       <HStack spacing={{ base: "0", md: "6" }}>
-        <IconButton
-          size="lg"
-          variant="ghost"
-          aria-label="open menu"
-          icon={<FiBell />}
-        />
         <Flex alignItems="center">
           <ThemeToggle />
         </Flex>
