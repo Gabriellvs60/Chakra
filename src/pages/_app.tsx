@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { ApolloProvider } from "@apollo/client";
 import { DefaultSeo } from "next-seo";
 import type { AppProps } from "next/app";
 import Head from "next/head";
@@ -8,10 +9,11 @@ import { IntlProvider } from "react-intl";
 import defaultSEOConfig from "../../next-seo.config";
 import { Chakra } from "lib/components/Chakra";
 import "lib/styles/globals.css";
-import type { BrowserLanguageType } from "lib/components/utils/getUserLanguage";
-import { getUserLanguage } from "lib/components/utils/getUserLanguage";
+import { apolloClient } from "lib/config/apollo";
 import { messagesBr } from "lib/locales/br";
 import { messagesEn } from "lib/locales/en";
+import type { BrowserLanguageType } from "lib/utils/getUserLanguage";
+import { getUserLanguage } from "lib/utils/getUserLanguage";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [browserLocale, setBroserLocale] = useState({
@@ -38,12 +40,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <DefaultSeo {...defaultSEOConfig} />
-      <IntlProvider
-        locale={browserLocale.language}
-        messages={messages[browserLocale.locale]}
-      >
-        <Component {...pageProps} />
-      </IntlProvider>
+      <ApolloProvider client={apolloClient}>
+        <IntlProvider
+          locale={browserLocale.language}
+          messages={messages[browserLocale.locale]}
+        >
+          <Component {...pageProps} />
+        </IntlProvider>
+      </ApolloProvider>
     </Chakra>
   );
 };

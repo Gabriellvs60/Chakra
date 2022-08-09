@@ -1,6 +1,6 @@
 import { NextSeo } from "next-seo";
 
-import LayoutTemplate from "lib/layout/LayoutTemplate";
+import LayoutTemplate from "lib/components/layout/LayoutTemplate";
 
 const Home = () => {
   return (

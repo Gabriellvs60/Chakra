@@ -22,7 +22,7 @@ export type LoginMutation = { __typename?: "Mutation" } & {
 
 export const LoginDocument = gql`
   mutation login($data: LoginInput!) {
-    login(data: { email: "lisa@simpson.com", password: "secret42" }) {
+    login(data: $data) {
       accessToken
       refreshToken
       user {

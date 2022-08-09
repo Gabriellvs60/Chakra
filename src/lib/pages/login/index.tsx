@@ -16,9 +16,22 @@ import {
 import { useIntl } from "react-intl";
 
 import { PasswordField } from "lib/components/molecules/PasswordField";
+import { useAuthHook } from "lib/features/auth/useAuthHook";
 
 const Login = () => {
   const { formatMessage } = useIntl();
+  const { authenticate } = useAuthHook();
+
+  const values = {
+    email: "lisa@simpson.com",
+    password: "secret42",
+  };
+
+  const handleAuthenticate = () => {
+    authenticate({
+      data: values,
+    });
+  };
 
   return (
     <Container
@@ -68,6 +81,7 @@ const Login = () => {
                 variant="primary"
                 backgroundColor={useColorModeValue("gray.800", "white")}
                 color={useColorModeValue("white", "gray.800")}
+                onClick={handleAuthenticate}
               >
                 Sign in
               </Button>
