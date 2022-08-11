@@ -1,0 +1,10 @@
+fragment StockFragment on Stock {
+  id
+  createdAt
+  updatedAt
+  category
+  cnpj
+  name
+  symbol
+  type
+}

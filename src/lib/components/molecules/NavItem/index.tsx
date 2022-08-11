@@ -6,15 +6,15 @@ import type { IconType } from "react-icons";
 interface NavItemProps extends FlexProps {
   icon: IconType;
   children: ReactNode;
+  href: string;
 }
 
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
+const NavItem = ({ icon, children, href, ...rest }: NavItemProps) => {
   const itemColor = useColorModeValue("gray.800", "white");
 
   return (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Link
-      href="#"
+      href={href}
       style={{ textDecoration: "none" }}
       _focus={{ boxShadow: "none" }}
     >

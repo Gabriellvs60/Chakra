@@ -1,14 +1,16 @@
 import type { IconType } from "react-icons";
-import { FiHome, FiTrendingUp, FiCompass, FiSettings } from "react-icons/fi";
-
+import { FiHome, FiCompass } from "react-icons/fi";
+// FiSettings
+// FiTrendingUp
 interface LinkItemProps {
-  name: string;
+  href: string;
   icon: IconType;
+  name: string;
 }
 
 export const LinkItems: Array<LinkItemProps> = [
-  { name: "label.home", icon: FiHome },
-  { name: "label.dividends", icon: FiTrendingUp },
-  { name: "label.b3Stocks", icon: FiCompass },
-  { name: "label.settings", icon: FiSettings },
+  { name: "label.home", icon: FiHome, href: "/admin/home" },
+  // { name: "label.dividends", icon: FiTrendingUp, href: "/admin/dividends" },
+  { name: "label.b3Stocks", icon: FiCompass, href: "/admin/stocks" },
+  // { name: "label.settings", icon: FiSettings, href: "/admin/settings" },
 ];

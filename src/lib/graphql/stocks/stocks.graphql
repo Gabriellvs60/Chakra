@@ -1,0 +1,17 @@
+query stocks {
+  stocks(first: 20, orderBy: { field: symbol, direction: desc }) {
+    totalCount
+    edges {
+      cursor
+      node {
+        ...StockFragment
+      }
+    }
+    pageInfo {
+      startCursor
+      endCursor
+      hasNextPage
+      hasPreviousPage
+    }
+  }
+}
