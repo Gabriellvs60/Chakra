@@ -10,16 +10,19 @@ import {
 import { NextSeo } from "next-seo";
 
 import LayoutTemplate from "lib/components/layout/LayoutTemplate";
-// import { useStocksQuery } from "lib/graphql/stocks/stocks.generated";
+import { useStocksQuery } from "lib/graphql/stocks/stocks.generated";
 
 const Stocks = () => {
-  //   const { data } = useStocksQuery();
+  const { data } = useStocksQuery();
   // eslint-disable-next-line no-console
-  //   console.log(data);
+  console.log(data?.stocks.edges);
+
+  const stocksData = data?.stocks.edges;
 
   return (
     <LayoutTemplate>
       <NextSeo title="Stocks" />
+      <span>add</span>
       <TableContainer
         border="1px"
         borderColor="gray.200"
@@ -36,12 +39,14 @@ const Stocks = () => {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td> Maxi Renda</Td>
-              <Td>MXRF11</Td>
-              <Td>FII</Td>
-              <Td>97.521.225/0001-25</Td>
-            </Tr>
+            {stocksData?.map((stock) => (
+              <Tr>
+                <Td>{stock.node.name}</Td>
+                <Td>{stock.node.symbol}</Td>
+                <Td>{stock.node.type}</Td>
+                <Td>{stock.node.cnpj}</Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>
